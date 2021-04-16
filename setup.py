@@ -1,10 +1,10 @@
+# Inspired by the EMPress setup.py file
 from setuptools import find_packages, setup
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
-# Inspired by the EMPress classifiers
 classifiers = """
-    Development Status :: 2 - Pre-Alpha
+    Development Status :: 3 - Alpha
     License :: OSI Approved :: BSD License
     Programming Language :: Python :: 3.7
     Programming Language :: Python :: 3.8
@@ -14,13 +14,21 @@ classifiers = """
     Operating System :: MacOS :: MacOS X
     Topic :: Scientific/Engineering :: Bio-Informatics
 """
-short_desc = "Framework for differential abundance using Bayesian inference"
+short_desc = (
+    "Framework for differential microbiome abundance using Bayesian "
+    "inference"
+)
+
+with open('README.md') as f:
+    long_description = f.read()
 
 setup(
     name="birdman",
     author="Gibraan Rahman",
     author_email="grahman@eng.ucsd.edu",
     description=short_desc,
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/gibsramen/BIRDMAn",
     version=__version__,
     license='BSD-3-Clause',
@@ -39,5 +47,5 @@ setup(
         "arviz"
     ],
     extras_require={"dev": ["pytest", "scikit-bio", "sphinx"]},
-    classifiers=classifiers
+    classifiers=[s.strip() for s in classifiers.split('\n') if s]
 )
